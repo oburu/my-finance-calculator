@@ -1,0 +1,40 @@
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import type { Vehicle } from "../../types";
+
+type VehicleCardProps = {
+  vehicle: Vehicle;
+};
+export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
+  return (
+    <Card
+      sx={{
+        borderRadius: 3,
+        backgroundColor: "#fff",
+        cursor: "pointer",
+        transition: "transform 0.2s, box-shadow 0.2s",
+        "&:hover": { transform: "scale(1.02)", boxShadow: 4 },
+      }}
+    >
+      <CardMedia
+        component="img"
+        height="180"
+        image={vehicle.image}
+        alt={`${vehicle.make} ${vehicle.model}`}
+      />
+      <CardContent>
+        <Typography variant="h6" fontWeight="bold">
+          {vehicle.make} {vehicle.model}
+        </Typography>
+        <Typography color="text.secondary">
+          {vehicle.year} • {vehicle.colour}
+        </Typography>
+        <Typography mt={1}>
+          <strong>Price:</strong> £{vehicle.price.toLocaleString()}
+        </Typography>
+        <Typography>
+          <strong>Mileage:</strong> {vehicle.mileage.toLocaleString()} miles
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+};
