@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useVehicles } from "./api";
 import { FilterBar } from "./components/FilterBar";
+import { SidePanel } from "./components/SidePanel";
 import { VehicleList } from "./components/VehicleList";
 import { AppContextProvider } from "./context/AppContextProvider";
 
@@ -33,6 +34,7 @@ function App() {
           </Typography>
           <FilterBar />
           <VehicleList />
+          <SidePanel />
         </Box>
       </Box>
     </AppContextProvider>
