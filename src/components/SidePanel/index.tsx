@@ -32,6 +32,7 @@ export const SidePanel = () => {
           onClick={handleClose}
           sx={{ position: "absolute", top: 18, right: 18 }}
           aria-label="close sidebar"
+          data-testid="close-button"
         >
           <CloseIcon />
         </IconButton>

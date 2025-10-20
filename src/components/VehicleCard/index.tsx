@@ -17,6 +17,7 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
   return (
     <Card
       onClick={() => handleCardClick(vehicle.id)}
+      data-testid="vehicle-card"
       sx={{
         borderRadius: 3,
         backgroundColor: "#fff",
