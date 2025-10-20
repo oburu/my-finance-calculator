@@ -1,8 +1,10 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { Box, Drawer, IconButton, Typography } from "@mui/material";
+import { Box, Drawer, IconButton } from "@mui/material";
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useVehicleData } from "../../api";
+import FinanceCalculator from "../FinanceCalculator";
+import { SmallVehicleCard } from "../VehicleCard/SmallVehicleCard";
 
 export const SidePanel = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,8 +12,6 @@ export const SidePanel = () => {
   const id = useMemo(() => searchParams.get("id"), [searchParams]);
 
   const { data: vehicle } = useVehicleData(id ?? "");
-
-  console.log(vehicle);
 
   const handleClose = () => {
     searchParams.delete("id");
@@ -27,7 +27,7 @@ export const SidePanel = () => {
       onClose={handleClose}
       aria-hidden="false"
     >
-      <Box sx={{ width: { md: 400, xs: "100%" }, p: 3 }}>
+      <Box sx={{ width: { md: 500, xs: "100%" }, p: 3 }}>
         <IconButton
           onClick={handleClose}
           sx={{ position: "absolute", top: 18, right: 18 }}
@@ -35,7 +35,13 @@ export const SidePanel = () => {
         >
           <CloseIcon />
         </IconButton>
-        <Typography variant="h6">Vehicle Information</Typography>
+
+        {vehicle && (
+          <>
+            <SmallVehicleCard vehicle={vehicle} />
+            <FinanceCalculator vehiclePrice={vehicle.price} />
+          </>
+        )}
       </Box>
     </Drawer>
   );

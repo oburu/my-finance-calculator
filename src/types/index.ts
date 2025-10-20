@@ -11,3 +11,11 @@ export type Vehicle = {
 
 export type SortField = "price" | "year" | "mileage";
 export type SortDirection = "asc" | "desc";
+
+export type FinanceQuote = {
+  onTheRoadPrice: number;
+  totalDeposit: number;
+  totalAmountOfCredit: number;
+  numberOfMonthlyPayments: number;
+  monthlyPayment: number;
+};

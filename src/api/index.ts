@@ -13,7 +13,7 @@ export async function fetchVehicleById(id: string): Promise<Vehicle> {
 
   if (!vehicle) throw new Error(`Vehicle with ID ${id} not found`);
 
-  await new Promise((resolve) => setTimeout(resolve, 400));
+  await new Promise((resolve) => setTimeout(resolve, 150));
 
   return vehicle;
 }

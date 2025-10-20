@@ -30,7 +30,7 @@ function App() {
           }}
         >
           <Typography variant="h4" mb={2}>
-            My Finance Calculator 🚙 📝
+            🚙 My Finance Calculator 📝
           </Typography>
           <FilterBar />
           <VehicleList />
