@@ -1,6 +1,11 @@
+import { useVehicles } from "./api";
 import viteLogo from "/vite.svg";
 
 function App() {
+  const { data } = useVehicles();
+
+  console.log(data);
+
   return (
     <>
       <div>

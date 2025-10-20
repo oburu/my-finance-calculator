@@ -1,0 +1,102 @@
+[
+  {
+    "make": "Toyota",
+    "model": "Camry",
+    "year": 2021,
+    "price": 23450,
+    "mileage": 15000,
+    "colour": "White",
+    "id": "veh001",
+    "image": "https://www.cnet.com/a/img/resize/d5e4fcfade5561ae086461087589414b29e7760a/hub/2021/08/20/709f33d7-b139-45ad-899f-2c4cfd7216e9/2021-toyota-camry-trd-1.jpg?auto=webp&fit=crop&height=675&precrop=3000,1565,x0,y435&width=1200"
+  },
+  {
+    "make": "Honda",
+    "model": "Civic",
+    "year": 2020,
+    "price": 19800,
+    "mileage": 22000,
+    "colour": "Blue",
+    "id": "veh002",
+    "image": "https://i.gaw.to/content/photos/38/85/388571_2020_Honda_Civic.jpg"
+  },
+  {
+    "make": "Ford",
+    "model": "F-150",
+    "year": 2019,
+    "price": 27500,
+    "mileage": 30000,
+    "colour": "Black",
+    "id": "veh003",
+    "image": "https://images.squarespace-cdn.com/content/v1/603f9fc6a2120f0be59de63c/1718661476156-XOAQB1EHRIZM3H9FFZDG/Black+Widow+24+F-150_Hero6.jpg?format=1500w"
+  },
+  {
+    "make": "Tesla",
+    "model": "Model 3",
+    "year": 2022,
+    "price": 38990,
+    "mileage": 5000,
+    "colour": "Red",
+    "id": "veh004",
+    "image": "https://d2q97jj8nilsnk.cloudfront.net/images/lBQ9HoUf-IMG_3954.jpg"
+  },
+  {
+    "make": "Chevrolet",
+    "model": "Malibu",
+    "year": 2018,
+    "price": 15500,
+    "mileage": 45000,
+    "colour": "Silver",
+    "id": "veh005",
+    "image": "https://cdn.dealrimages.com/TH%2FWX%2FA0%2F3SFHP8NH2A9IWN.jpg?h=500"
+  },
+  {
+    "make": "Nissan",
+    "model": "Altima",
+    "year": 2021,
+    "price": 21000,
+    "mileage": 18000,
+    "colour": "Gray",
+    "id": "veh006",
+    "image": "https://www.shermandodge.com/imagetag/3020/2/l/Used-2021-Nissan-Altima-20-SR-1712066761.jpg"
+  },
+  {
+    "make": "BMW",
+    "model": "X3",
+    "year": 2020,
+    "price": 35500,
+    "mileage": 25000,
+    "colour": "White",
+    "id": "veh007",
+    "image": "https://x3.xbimmers.com/forums/attachment.php?attachmentid=2153871&stc=1&d=1570220021"
+  },
+  {
+    "make": "Hyundai",
+    "model": "Elantra",
+    "year": 2019,
+    "price": 16200,
+    "mileage": 35000,
+    "colour": "Blue",
+    "id": "veh008",
+    "image": "https://i.gaw.to/content/photos/38/85/388532_2019_Hyundai_Elantra.jpg?1024x640"
+  },
+  {
+    "make": "Kia",
+    "model": "Sorento",
+    "year": 2022,
+    "price": 29900,
+    "mileage": 12000,
+    "colour": "Green",
+    "id": "veh009",
+    "image": "https://www.kenganleykiamentor.com/blogs/4316/wp-content/uploads/2022/09/2022-Kia-Sorento-02.webp"
+  },
+  {
+    "make": "Volkswagen",
+    "model": "Jetta",
+    "year": 2018,
+    "price": 14500,
+    "mileage": 48000,
+    "colour": "Black",
+    "id": "veh010",
+    "image": "https://assets.volkswagen.com/is/image/volkswagenag/used_Jetta_2011-2014_gallery_front_3x2-2500x1667?Zml0PWNyb3AsMSZmbXQ9cG5nJndpZD04MDAmYWxpZ249MC4wMCwwLjAwJmJmYz1vZmYmYzRiMA=="
+  }
+]
