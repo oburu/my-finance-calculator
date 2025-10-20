@@ -14,7 +14,7 @@ export const theme = createTheme({
   },
   palette: {
     text: {
-      primary: "#333", // default text color
+      primary: "#333",
       secondary: "#666",
     },
     background: {

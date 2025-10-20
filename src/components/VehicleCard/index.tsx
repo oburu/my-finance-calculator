@@ -26,13 +26,11 @@ export const VehicleCard = ({ vehicle }: VehicleCardProps) => {
           {vehicle.make} {vehicle.model}
         </Typography>
         <Typography color="text.secondary">
-          {vehicle.year} • {vehicle.colour}
+          {vehicle.year} • {vehicle.colour} • {vehicle.mileage.toLocaleString()}{" "}
+          miles
         </Typography>
-        <Typography mt={1}>
-          <strong>Price:</strong> £{vehicle.price.toLocaleString()}
-        </Typography>
-        <Typography>
-          <strong>Mileage:</strong> {vehicle.mileage.toLocaleString()} miles
+        <Typography mt={1} variant="h5">
+          £{vehicle.price.toLocaleString()}
         </Typography>
       </CardContent>
     </Card>

@@ -8,3 +8,6 @@ export type Vehicle = {
   id: string;
   image: string;
 };
+
+export type SortField = "price" | "year" | "mileage";
+export type SortDirection = "asc" | "desc";
