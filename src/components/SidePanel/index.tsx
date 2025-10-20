@@ -2,11 +2,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Box, Drawer, IconButton, Typography } from "@mui/material";
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useVehicleData } from "../../api";
 
 export const SidePanel = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const id = useMemo(() => searchParams.get("id"), [searchParams]);
+
+  const { data: vehicle } = useVehicleData(id ?? "");
+
+  console.log(vehicle);
 
   const handleClose = () => {
     searchParams.delete("id");

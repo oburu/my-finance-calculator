@@ -8,10 +8,10 @@ import { AppContextProvider } from "./context/AppContextProvider";
 function App() {
   const { data, isLoading, isError } = useVehicles();
 
-  if (isLoading) return <Box>Loading ⌛...</Box>;
+  if (isLoading) return <Box p={4}>Loading ⌛...</Box>;
 
   if (isError && !isLoading)
-    return <Box>Sorry there is an error with the connection ⚠️</Box>;
+    return <Box p={4}>Sorry there is an error with the connection ⚠️</Box>;
 
   return (
     <AppContextProvider data={data}>
