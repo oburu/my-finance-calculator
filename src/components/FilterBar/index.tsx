@@ -1,6 +1,6 @@
 import { Box, MenuItem, Select, TextField } from "@mui/material";
 import { useAppContext } from "../../context/useAppContext";
-import { DropDown } from "./Elements";
+import { DropDown } from "./DropDown";
 
 export const FilterBar = () => {
   const {

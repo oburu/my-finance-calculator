@@ -14,40 +14,38 @@ export const Sliders = ({
   term,
   setTerm,
   quote,
-}: SlidersProps) => {
-  return (
-    <>
-      <Typography gutterBottom>
-        Deposit: {depositPercent}% (£
-        {quote.totalDeposit.toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-        })}
-        )
-      </Typography>
-      <Slider
-        value={depositPercent}
-        min={0}
-        max={100}
-        step={10}
-        marks
-        valueLabelDisplay="auto"
-        onChange={(_, val) => setDepositPercent(val)}
-      />
+}: SlidersProps) => (
+  <>
+    <Typography gutterBottom>
+      Deposit: {depositPercent}% (£
+      {quote.totalDeposit.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+      })}
+      )
+    </Typography>
+    <Slider
+      value={depositPercent}
+      min={0}
+      max={100}
+      step={10}
+      marks
+      valueLabelDisplay="auto"
+      onChange={(_, val) => setDepositPercent(val)}
+    />
 
-      {/* Term Slider */}
-      <Typography gutterBottom>Term (months): {term}</Typography>
-      <Slider
-        value={term}
-        min={0}
-        max={72}
-        step={6}
-        marks
-        valueLabelDisplay="auto"
-        onChange={(_, val) => {
-          if (val === 0) return;
-          setTerm(val);
-        }}
-      />
-    </>
-  );
-};
+    {/* Term Slider */}
+    <Typography gutterBottom>Term (months): {term}</Typography>
+    <Slider
+      value={term}
+      min={0}
+      max={72}
+      step={6}
+      marks
+      valueLabelDisplay="auto"
+      onChange={(_, val) => {
+        if (val === 0) return;
+        setTerm(val);
+      }}
+    />
+  </>
+);
