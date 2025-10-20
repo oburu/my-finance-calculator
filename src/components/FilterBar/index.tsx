@@ -1,30 +1,17 @@
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  type SortDirection,
-} from "@mui/material";
-import type { SortField } from "../../types";
+import { Box, MenuItem, Select, TextField } from "@mui/material";
+import { useAppContext } from "../../context/useAppContext";
+import { DropDown } from "./Elements";
 
-type FiltersProps = {
-  search: string;
-  setSearch: (value: string) => void;
-  sortField: SortField;
-  setSortField: (value: SortField) => void;
-  sortDirection: SortDirection;
-  handleSortDirection: (value: SortDirection) => void;
-};
-export const FilterBar = ({
-  search,
-  setSearch,
-  sortField,
-  setSortField,
-  sortDirection,
-  handleSortDirection,
-}: FiltersProps) => {
+export const FilterBar = () => {
+  const {
+    search,
+    setSearch,
+    sortField,
+    setSortField,
+    sortDirection,
+    handleSortDirection,
+  } = useAppContext();
+
   return (
     <Box
       sx={{
@@ -42,9 +29,7 @@ export const FilterBar = ({
         onChange={(e) => setSearch(e.target.value)}
         sx={{ flex: 1, minWidth: 220 }}
       />
-
-      <FormControl sx={{ minWidth: 150 }}>
-        <InputLabel>Sort By</InputLabel>
+      <DropDown label="Sort By">
         <Select
           value={sortField}
           label="Sort By"
@@ -54,19 +39,17 @@ export const FilterBar = ({
           <MenuItem value="year">Year</MenuItem>
           <MenuItem value="mileage">Mileage</MenuItem>
         </Select>
-      </FormControl>
-
-      <FormControl sx={{ minWidth: 150 }}>
-        <InputLabel>Direction</InputLabel>
+      </DropDown>
+      <DropDown label="Direction">
         <Select
           value={sortDirection}
           label="Direction"
-          onChange={(e) => handleSortDirection(e.target.value as SortDirection)}
+          onChange={() => handleSortDirection()}
         >
           <MenuItem value="asc">Ascending</MenuItem>
           <MenuItem value="desc">Descending</MenuItem>
         </Select>
-      </FormControl>
+      </DropDown>
     </Box>
   );
 };

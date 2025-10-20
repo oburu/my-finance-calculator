@@ -1,8 +1,15 @@
 import type { SortingState } from "@tanstack/react-table";
-import { useMemo, useState } from "react";
+import { type ReactNode, useMemo, useState } from "react";
 import type { SortDirection, SortField, Vehicle } from "../types";
+import { AppContext } from "./useAppContext";
 
-export const useSortingAndFilter = ({ data }: { data: Vehicle[] }) => {
+export const AppContextProvider = ({
+  data,
+  children,
+}: {
+  data?: Vehicle[];
+  children: ReactNode;
+}) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [search, setSearch] = useState("");
   const [sortField, setSortField] = useState<SortField>("price");
@@ -13,6 +20,7 @@ export const useSortingAndFilter = ({ data }: { data: Vehicle[] }) => {
   };
 
   const filteredData = useMemo(() => {
+    if (!data) return [];
     return data.filter(
       (v) =>
         v.make.toLowerCase().includes(search.toLowerCase()) ||
@@ -31,7 +39,7 @@ export const useSortingAndFilter = ({ data }: { data: Vehicle[] }) => {
     return sorted;
   }, [filteredData, sortField, sortDirection]);
 
-  return {
+  const value = {
     sortedData,
     sorting,
     setSorting,
@@ -42,4 +50,6 @@ export const useSortingAndFilter = ({ data }: { data: Vehicle[] }) => {
     sortDirection,
     handleSortDirection,
   };
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
