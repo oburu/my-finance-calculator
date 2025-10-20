@@ -12,6 +12,7 @@ A **React + TypeScript** project built with **Vite** that displays a list of ret
 - 📊 **TanStack Table** — Flexible and performant table library
 - 🎨 **Material UI (MUI)** — Component library for styling
 - 📡 **React Router** — To handle client-side routing
+- 🧪 **Vitest**, **React Testing Library**, **MSW** — Testing stack
 
 ---
 
@@ -38,6 +39,18 @@ npm install
 ```bash
 npm run dev
 ```
+
+## 🧪 Testing & Coverage
+
+```bash
+npm run coverage
+```
+
+This project uses:
+
+- Vitest for unit testing
+- React Testing Library for component testing
+- MSW (Mock Service Worker) for API request mock
 
 ## 🌱 Future Enhancements
 
