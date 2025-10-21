@@ -24,6 +24,7 @@ export const Sliders = ({
       )
     </Typography>
     <Slider
+      aria-label="deposit"
       value={depositPercent}
       min={0}
       max={100}
@@ -36,6 +37,7 @@ export const Sliders = ({
     {/* Term Slider */}
     <Typography gutterBottom>Term (months): {term}</Typography>
     <Slider
+      aria-label="term"
       value={term}
       min={0}
       max={72}

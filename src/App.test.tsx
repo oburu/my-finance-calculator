@@ -48,7 +48,7 @@ describe("App", () => {
     });
   });
 
-  test("Click on a Vehicle Card and shows the side panel", async () => {
+  test("Click on a Vehicle Card and shows the side panel and the deposit slider works", async () => {
     renderWithClient(<App />);
 
     await waitFor(() => {
@@ -63,6 +63,11 @@ describe("App", () => {
         screen.getByText("Representative Finance Calculator")
       ).toBeInTheDocument();
     });
+
+    const depositSlider = screen.getByRole("slider", { name: /deposit/i });
+    expect(depositSlider).toHaveAttribute("aria-valuenow", "10");
+    fireEvent.change(depositSlider, { target: { value: 70 } });
+    expect(depositSlider).toHaveAttribute("aria-valuenow", "70");
 
     fireEvent.click(screen.getByTestId("close-button"));
     await waitFor(() => {
