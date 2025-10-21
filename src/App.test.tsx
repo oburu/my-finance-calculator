@@ -2,10 +2,9 @@ import { ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
-import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, test } from "vitest";
 import App from "./App";
-import { SidePanel } from "./components/SidePanel";
 import { server } from "./test/setupTests";
 import { theme } from "./theme";
 
@@ -19,17 +18,11 @@ function renderWithClient(ui: React.ReactElement, initialEntries?: string[]) {
   return render(
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        {initialEntries?.length ? (
-          <MemoryRouter initialEntries={initialEntries}>
-            <SidePanel />
-          </MemoryRouter>
-        ) : (
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={ui} />
-            </Routes>
-          </BrowserRouter>
-        )}
+        <MemoryRouter initialEntries={initialEntries}>
+          <Routes>
+            <Route path="/" element={ui} />
+          </Routes>
+        </MemoryRouter>
       </QueryClientProvider>
     </ThemeProvider>
   );
