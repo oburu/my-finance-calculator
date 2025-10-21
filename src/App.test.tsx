@@ -1,12 +1,15 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { http, HttpResponse } from "msw";
+import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, test } from "vitest";
 import App from "./App";
+import { SidePanel } from "./components/SidePanel";
+import { server } from "./test/setupTests";
 import { theme } from "./theme";
 
-function renderWithClient(ui: React.ReactElement) {
+function renderWithClient(ui: React.ReactElement, initialEntries?: string[]) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: { retry: false },
@@ -15,17 +18,28 @@ function renderWithClient(ui: React.ReactElement) {
 
   return render(
     <ThemeProvider theme={theme}>
-      <CssBaseline />
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={ui} />
-          </Routes>
-        </BrowserRouter>
+        {initialEntries?.length ? (
+          <MemoryRouter initialEntries={initialEntries}>
+            <SidePanel />
+          </MemoryRouter>
+        ) : (
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={ui} />
+            </Routes>
+          </BrowserRouter>
+        )}
       </QueryClientProvider>
     </ThemeProvider>
   );
 }
+
+const errorExpect = () => {
+  expect(
+    screen.getByText("Sorry there is an error with the connection ⚠️")
+  ).toBeInTheDocument();
+};
 
 describe("App", () => {
   test("Fetches the Vehicles data", async () => {
@@ -41,7 +55,7 @@ describe("App", () => {
     });
   });
 
-  test("Click on a Vehicle Card", async () => {
+  test("Click on a Vehicle Card and shows the side panel", async () => {
     renderWithClient(<App />);
 
     await waitFor(() => {
@@ -61,6 +75,44 @@ describe("App", () => {
     await waitFor(() => {
       expect(
         screen.getByText("🚙 My Finance Calculator 📝")
+      ).toBeInTheDocument();
+    });
+  });
+
+  test("Search for a vehicle", async () => {
+    renderWithClient(<App />);
+
+    await waitFor(() => {
+      expect(screen.getByText("Tesla Model 3")).toBeInTheDocument();
+    });
+
+    const input = screen.getByLabelText(
+      /Search by make or model/i
+    ) as HTMLInputElement;
+
+    fireEvent.change(input, { target: { value: "honda" } });
+
+    expect(input.value).toBe("honda");
+
+    await waitFor(() => {
+      expect(screen.getByText("Honda Civic")).toBeInTheDocument();
+    });
+  });
+
+  test("Shows error message when there's no data response for the table", async () => {
+    server.use(
+      http.get("/vehicles.json", () => new HttpResponse(null, { status: 404 }))
+    );
+    renderWithClient(<App />);
+    await waitFor(errorExpect);
+  });
+
+  test("Shows error message when there's no vehicle id", async () => {
+    renderWithClient(<App />, ["/?id=veh090"]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("Vehicle does not exists ⚠️")
       ).toBeInTheDocument();
     });
   });

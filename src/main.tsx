@@ -8,8 +8,8 @@ import { theme } from "./theme.ts";
 const queryCLient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 3,
-      staleTime: 5000,
+      retry: 2,
+      staleTime: 3000,
     },
   },
 });
