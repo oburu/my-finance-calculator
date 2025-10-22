@@ -3,8 +3,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { http, HttpResponse } from "msw";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import App from "./App";
+import { useAppContext } from "./context/useAppContext";
 import { server } from "./test/setupTests";
 import { theme } from "./theme";
 
@@ -27,6 +28,11 @@ function renderWithClient(ui: React.ReactElement, initialEntries?: string[]) {
     </ThemeProvider>
   );
 }
+
+const TestComponent = () => {
+  const value = useAppContext();
+  return <div>{value.search}</div>;
+};
 
 const errorExpect = () => {
   expect(
@@ -113,5 +119,15 @@ describe("App", () => {
         screen.getByText("Vehicle does not exists ⚠️")
       ).toBeInTheDocument();
     });
+  });
+
+  test("throws when used outside provider", () => {
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    expect(() => render(<TestComponent />)).toThrow(
+      "useAppContext must be used within a AppContextProvider"
+    );
+
+    spy.mockRestore();
   });
 });
